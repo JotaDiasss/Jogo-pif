@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-int main (){
-    int matriz[10][10] = {};
-    return 0;
+#define LINHAS 6
+#define COLUNAS 6
+
+#include "lista.h"
+
+int main() {
+    printf("Candy Crush C...\n");
 }
