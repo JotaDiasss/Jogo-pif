@@ -76,16 +76,3 @@ void liberar_fila(Node** head) {
     }
     *head = NULL;
 }
-
-void criar_matriz() {
-    Doce **matriz = (Doce **)malloc(9 * sizeof(Doce *));
-    for (int i=0; i<9; i++) {
-        matriz[i] = (Doce *)malloc(9 * sizeof(Doce));
-    }
-
-    for (int i=0; i<9; i++) {
-        for (int j=0; j<9; j++) {
-            inserir_fila_entrada()
-        }
-    }
-}
