@@ -5,11 +5,11 @@ Este é um jogo em C inspirado na mecânica básica do Candy Crush. O projeto ut
 ## Estrutura do Projeto
 
 O código está dividido nos seguintes arquivos:
-*   [src/main.c](file:///C:/Users/Estagiario_Gabriel/Jogo-pif/src/main.c): Ponto de entrada do programa, contendo a lógica de inicialização e controle do tabuleiro do jogo.
-*   [src/lista.c](file:///C:/Users/Estagiario_Gabriel/Jogo-pif/src/lista.c): Implementação de todas as funções responsáveis pela gerência da fila de doces (criação, inserção, remoção e desalocação).
-*   [src/matriz.c](file:///C:/Users/Estagiario_Gabriel/Jogo-pif/src/matriz.c): Implementação das funções de criação, preenchimento, exibição e liberação da matriz.
-*   [include/lista.h](file:///C:/Users/Estagiario_Gabriel/Jogo-pif/include/lista.h): Definição das estruturas `Doce` e `Node`, além dos protótipos da fila.
-*   [include/matriz.h](file:///C:/Users/Estagiario_Gabriel/Jogo-pif/include/matriz.h): Protótipos das funções da matriz.
+*   [src/main.c]: Ponto de entrada do programa, contendo a lógica de inicialização e controle do tabuleiro do jogo.
+*   [src/lista.c]: Implementação de todas as funções responsáveis pela fila de doces.
+*   [src/matriz.c]: Implementação das funções da matriz.
+*   [include/lista.h]: Definição das estruturas `Doce` e `Node`, além dos protótipos da fila.
+*   [include/matriz.h]: Protótipos das funções da matriz.
 
 ## Como Compilar e Executar
 
