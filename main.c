@@ -6,6 +6,7 @@
 #define COLUNAS 6
 
 #include "lista.h"
+#include "matriz.h"
 
 int main() {
     printf("Candy Crush C...\n");
