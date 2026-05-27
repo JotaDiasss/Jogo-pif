@@ -56,3 +56,28 @@ void liberar_matriz(Doce** matriz, int linhas) {
     }
     free(matriz);          // libera o array de ponteiros
 }
+
+// Troca dois doces de lugar na matriz se forem posições válidas e adjacentes.
+// Retorna 1 se a troca foi realizada com sucesso, e 0 caso contrário.
+int trocar_doces(Doce** matriz, int linhas, int colunas, int l1, int c1, int l2, int c2) {
+    // 1. Verifica limites
+    if (l1 < 0 || l1 >= linhas || c1 < 0 || c1 >= colunas ||
+        l2 < 0 || l2 >= linhas || c2 < 0 || c2 >= colunas) {
+        printf("Posicao fora do tabuleiro!\n");
+        return 0;
+    }
+    
+    // 2. Verifica adjacência (apenas horizontal ou vertical, não diagonal)
+    int dist_linhas = abs(l1 - l2);
+    int dist_colunas = abs(c1 - c2);
+    
+    if ((dist_linhas == 1 && dist_colunas == 0) || (dist_linhas == 0 && dist_colunas == 1)) {
+        Doce temp = matriz[l1][c1];
+        matriz[l1][c1] = matriz[l2][c2];
+        matriz[l2][c2] = temp;
+        return 1;
+    }
+    
+    printf("Os doces nao sao adjacentes!\n");
+    return 0;
+}

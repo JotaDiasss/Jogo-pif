@@ -22,6 +22,19 @@ int main() {
     
     imprimir_matriz(tabuleiro, LINHAS, COLUNAS);
     
+    // Teste de Troca (Lógica 1)
+    printf("\n--- Testando Lógica de Troca ---\n");
+    printf("Troca 1 (Valida: adjacente): (0,0) por (0,1)\n");
+    if (trocar_doces(tabuleiro, LINHAS, COLUNAS, 0, 0, 0, 1)) {
+        printf("Troca efetuada!\n");
+    }
+    imprimir_matriz(tabuleiro, LINHAS, COLUNAS);
+    
+    printf("\nTroca 2 (Invalida: nao adjacente): (0,0) por (2,2)\n");
+    if (trocar_doces(tabuleiro, LINHAS, COLUNAS, 0, 0, 2, 2)) {
+        printf("Troca efetuada!\n");
+    }
+    
     imprimir_fila(fila_entrada);
     
     liberar_matriz(tabuleiro, LINHAS);
