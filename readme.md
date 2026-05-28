@@ -15,15 +15,13 @@ O código está dividido nos seguintes arquivos:
 
 Siga os passos abaixo no seu terminal para compilar e executar o projeto com a nova estrutura de pastas:
 
-1.  **Remova os arquivos duplicados da raiz (opcional, mas necessário se houver erro de compilação):**
-    Remova `lista.c`, `lista.h`, `main.c`, `matriz.c`, `matriz.h` da raiz (deixe apenas as pastas `src/`, `include/` e o `readme.md`).
 
-2.  **Compilar os arquivos:**
+1.  **Compilar os arquivos:**
     ```bash
     gcc src/main.c src/lista.c src/matriz.c -Iinclude -o candy_crush.exe
     ```
 
-3.  **Executar o jogo:**
+2.  **Executar o jogo:**
     ```bash
     ./candy_crush.exe
     ```
