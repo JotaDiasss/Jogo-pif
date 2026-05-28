@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Iinclude -Wall -Wextra
 LDFLAGS = -lraylib -lopengl32 -lgdi32 -lwinmm -lcomdlg32 -luser32
 
-SRCS = src/main.c src/lista.c src/matriz.c
+SRCS = src/main.c src/lista.c src/matriz.c src/raylib_utils.c src/render.c
 OBJS = $(SRCS:.c=.o)
 TARGET = candy_crush.exe
 

@@ -1,4 +1,6 @@
 lista.o
 main.o
 matriz.o
+raylib_utils.o
+render.o
 candy_crush.exe
