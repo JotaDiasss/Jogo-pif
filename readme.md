@@ -5,23 +5,36 @@ Este é um jogo em C inspirado na mecânica básica do Candy Crush. O projeto ut
 ## Estrutura do Projeto
 
 O código está dividido nos seguintes arquivos:
-*   [src/main.c]: Ponto de entrada do programa, contendo a lógica de inicialização e controle do tabuleiro do jogo.
-*   [src/lista.c]: Implementação de todas as funções responsáveis pela fila de doces.
-*   [src/matriz.c]: Implementação das funções da matriz.
-*   [include/lista.h]: Definição das estruturas `Doce` e `Node`, além dos protótipos da fila.
-*   [include/matriz.h]: Protótipos das funções da matriz.
+*   `src/main.c`: Ponto de entrada do programa, responsável pelo ciclo principal e inicialização.
+*   `src/lista.c`: Implementação das funções da fila de doces.
+*   `src/matriz.c`: Implementação das funções da matriz do tabuleiro.
+*   `src/raylib_utils.c`: Carregamento e gerenciamento das texturas dos doces.
+*   `src/render.c`: Desenho da grade e dos doces na tela.
+*   `include/lista.h`: Definição das estruturas `Doce` e `Node`, e protótipos da fila.
+*   `include/matriz.h`: Protótipos das funções da matriz.
+*   `include/raylib_utils.h`: Protótipos do módulo de Raylib e declaração das texturas.
+*   `include/render.h`: Protótipos das funções de renderização.
+*   `include/game_constants.h`: Constantes de cores e layout do jogo.
+*   `assets/`: Imagens dos doces usadas pelo jogo.
 
 ## Como Compilar e Executar
 
-Siga os passos abaixo no seu terminal para compilar e executar o projeto com a nova estrutura de pastas:
+O projeto possui um `Makefile` cross-platform que funciona em Windows e Linux.
 
-
-1.  **Compilar os arquivos:**
+1.  **Compilar:**
     ```bash
-    gcc src/main.c src/lista.c src/matriz.c -Iinclude -o candy_crush.exe
+    make
     ```
 
-2.  **Executar o jogo:**
+2.  **Executar:**
     ```bash
-    ./candy_crush.exe
+    make run
     ```
+
+### Observações
+
+*  As texturas dos doces devem estar na pasta `assets/` na raiz do projeto.
+*  O `Makefile` usa bibliotecas diferentes para Windows e Linux:
+   * Windows: `-lopengl32 -lgdi32 -lwinmm -lcomdlg32 -luser32`
+   * Linux: `-lraylib -lm -lpthread -ldl -lrt -lX11`
+*  O projeto depende da biblioteca `raylib`; certifique-se de que ela esteja instalada e acessível ao compilador.
