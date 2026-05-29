@@ -1,4 +1,4 @@
-﻿#include <raylib.h>
+#include <raylib.h>
 #include "render.h"
 #include "raylib_utils.h"
 #include "game_constants.h"
@@ -63,7 +63,7 @@ void DrawBoardCells(Doce **board)
     }
 }
 
-void DrawGame(Doce **board)
+void DrawGame(Doce **board, int linha_sel, int col_sel, int pontuacao, int jogadas)
 {
     if (background.id != 0)
     {
@@ -76,6 +76,26 @@ void DrawGame(Doce **board)
             WHITE);
 
         DrawBoardGrid();
+        
+        // Desenha a seleção do jogador
+        if (linha_sel >= 0 && col_sel >= 0) {
+            int x = GRID_X + col_sel * CELL_SIZE;
+            int y = GRID_Y + linha_sel * CELL_SIZE;
+            DrawRectangle(x, y, CELL_SIZE, CELL_SIZE, (Color){255, 255, 0, 100}); // Fundo Amarelo
+            DrawRectangleLinesEx((Rectangle){x, y, CELL_SIZE, CELL_SIZE}, 4.0f, YELLOW); // Borda
+        }
+
         DrawBoardCells(board);
+        
+        // Desenha a HUD (Interface de Usuário)
+        DrawText(TextFormat("PONTOS: %d", pontuacao), 50, 50, 40, HUD_TEXT_COLOR);
+        DrawText(TextFormat("JOGADAS: %d", jogadas), 50, 100, 40, HUD_TEXT_COLOR);
+        
+        // Tela de Fim de Jogo
+        if (jogadas <= 0) {
+            DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, (Color){0, 0, 0, 150});
+            DrawText("FIM DE JOGO!", SCREEN_WIDTH/2 - 150, SCREEN_HEIGHT/2 - 50, 50, RED);
+            DrawText(TextFormat("Sua Pontuacao: %d", pontuacao), SCREEN_WIDTH/2 - 180, SCREEN_HEIGHT/2 + 20, 40, WHITE);
+        }
     }
 }
