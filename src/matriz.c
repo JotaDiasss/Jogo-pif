@@ -153,3 +153,45 @@ int verificar_combinacoes(Doce** matriz, int linhas, int colunas) {
 
     return removidos;
 }
+
+// Faz os doces caírem para preencher os espaços vazios deixados pelas combinações
+void aplicar_gravidade(Doce** matriz, int linhas, int colunas) {
+    for (int j = 0; j < colunas; j++) {
+        int linha_escrita = linhas - 1; // Começa da base do tabuleiro
+        
+        // Puxa todos os doces que não são vazios para o fundo
+        for (int i = linhas - 1; i >= 0; i--) {
+            if (matriz[i][j].tipo != ' ' && matriz[i][j].tipo != 0) {
+                matriz[linha_escrita][j] = matriz[i][j];
+                linha_escrita--;
+            }
+        }
+        
+        // Preenche o resto (o topo) com espaços vazios
+        while (linha_escrita >= 0) {
+            matriz[linha_escrita][j].tipo = ' ';
+            matriz[linha_escrita][j].id = -1;
+            matriz[linha_escrita][j].especial = 0;
+            linha_escrita--;
+        }
+    }
+}
+
+// Preenche os espaços vazios do topo com novos doces da fila de entrada
+void preencher_espacos_vazios(Doce** matriz, int linhas, int colunas, Node** fila) {
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            if (matriz[i][j].tipo == ' ' || matriz[i][j].tipo == 0) {
+                Doce d = remover_fila_entrada(fila);
+                
+                // Se por acaso a fila secar, vamos reabastecê-la para não quebrar o jogo
+                if (d.id == -1) {
+                    preencher_fila_inicial(fila, 50);
+                    d = remover_fila_entrada(fila);
+                }
+                
+                matriz[i][j] = d;
+            }
+        }
+    }
+}
