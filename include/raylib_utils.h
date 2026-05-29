@@ -19,9 +19,10 @@ typedef enum {
 #define CANDY_TEXTURE_COUNT 5
 
 extern Texture candyTextures[CANDY_TEXTURE_COUNT];
+extern Texture2D background;
 
 Texture GetCandyTexture(char type);
 int InitGameTextures(void);
 void UnloadGameTextures(void);
 
-#endif // RAYLIB_UTILS_H
+#endif

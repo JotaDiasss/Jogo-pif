@@ -34,5 +34,8 @@ src/%.o: src/%.c
 run: $(TARGET)
 	$(RUN_CMD)
 
+rebuild: clean all
+	$(RUN_CMD)
+
 clean:
 	-$(RM) $(RM_OBJS) $(RM_TARGET)

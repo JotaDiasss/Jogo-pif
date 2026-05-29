@@ -39,7 +39,6 @@ int main(void) {
 
     while (!WindowShouldClose()) {
         BeginDrawing();
-        ClearBackground(BG_COLOR);
 
         DrawGame(tabuleiro);
 
