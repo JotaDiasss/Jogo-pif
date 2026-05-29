@@ -57,8 +57,36 @@ void liberar_matriz(Doce** matriz, int linhas) {
     free(matriz);          // libera o array de ponteiros
 }
 
+// Função auxiliar para apenas verificar se existe alguma combinação no tabuleiro
+// (Retorna 1 se existe, 0 se não existe, sem remover nada)
+int tem_combinacao(Doce** matriz, int linhas, int colunas) {
+    // Verificação Horizontal
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas - 2; j++) {
+            char tipo = matriz[i][j].tipo;
+            if (tipo != ' ' && tipo != 0) {
+                if (matriz[i][j+1].tipo == tipo && matriz[i][j+2].tipo == tipo) {
+                    return 1;
+                }
+            }
+        }
+    }
+    // Verificação Vertical
+    for (int j = 0; j < colunas; j++) {
+        for (int i = 0; i < linhas - 2; i++) {
+            char tipo = matriz[i][j].tipo;
+            if (tipo != ' ' && tipo != 0) {
+                if (matriz[i+1][j].tipo == tipo && matriz[i+2][j].tipo == tipo) {
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
 // Troca dois doces de lugar na matriz se forem posições válidas e adjacentes.
-// Retorna 1 se a troca foi realizada com sucesso, e 0 caso contrário.
+// Retorna 1 se a troca foi realizada com sucesso e gerou uma combinação, e 0 caso contrário.
 int trocar_doces(Doce** matriz, int linhas, int colunas, int l1, int c1, int l2, int c2) {
     // 1. Verifica limites
     if (l1 < 0 || l1 >= linhas || c1 < 0 || c1 >= colunas ||
@@ -72,9 +100,21 @@ int trocar_doces(Doce** matriz, int linhas, int colunas, int l1, int c1, int l2,
     int dist_colunas = abs(c1 - c2);
     
     if ((dist_linhas == 1 && dist_colunas == 0) || (dist_linhas == 0 && dist_colunas == 1)) {
+        // Realiza a troca inicial
         Doce temp = matriz[l1][c1];
         matriz[l1][c1] = matriz[l2][c2];
         matriz[l2][c2] = temp;
+        
+        // Verifica se a troca gerou pelo menos uma combinação
+        if (!tem_combinacao(matriz, linhas, colunas)) {
+            // Reverte a troca
+            temp = matriz[l1][c1];
+            matriz[l1][c1] = matriz[l2][c2];
+            matriz[l2][c2] = temp;
+            printf("Troca invalida! Nenhum trio formado.\n");
+            return 0;
+        }
+        
         return 1;
     }
     
@@ -194,4 +234,30 @@ void preencher_espacos_vazios(Doce** matriz, int linhas, int colunas, Node** fil
             }
         }
     }
+}
+
+// Cria um ciclo contínuo de remover combinações, aplicar gravidade e preencher o topo
+// Retorna a quantidade total de doces estourados na reação em cadeia
+int resolver_cascatas(Doce** matriz, int linhas, int colunas, Node** fila) {
+    int total_removidos = 0;
+    int removidos_agora = 0;
+    
+    do {
+        // Verifica e remove as combinações atuais
+        removidos_agora = verificar_combinacoes(matriz, linhas, colunas);
+        
+        if (removidos_agora > 0) {
+            total_removidos += removidos_agora;
+            
+            // Cai os doces para preencher os buracos
+            aplicar_gravidade(matriz, linhas, colunas);
+            
+            // Puxa novos doces da fila para preencher o topo
+            preencher_espacos_vazios(matriz, linhas, colunas, fila);
+            
+            // O ciclo vai se repetir porque os novos doces podem ter formado novas combinações (cascata)
+        }
+    } while (removidos_agora > 0);
+    
+    return total_removidos;
 }
