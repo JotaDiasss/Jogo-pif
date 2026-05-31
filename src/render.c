@@ -192,12 +192,5 @@ void DrawGame(Doce **board, int linha_sel, int col_sel, int pontuacao, int jogad
         // Desenha a HUD (Interface de Usuário)
         DrawText(TextFormat("PONTOS: %d", pontuacao), 50, 50, 40, HUD_TEXT_COLOR);
         DrawText(TextFormat("JOGADAS: %d", jogadas), 50, 100, 40, HUD_TEXT_COLOR);
-        
-        // Tela de Fim de Jogo
-        if (jogadas <= 0) {
-            DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, (Color){0, 0, 0, 150});
-            DrawText("FIM DE JOGO!", SCREEN_WIDTH/2 - 150, SCREEN_HEIGHT/2 - 50, 50, RED);
-            DrawText(TextFormat("Sua Pontuacao: %d", pontuacao), SCREEN_WIDTH/2 - 180, SCREEN_HEIGHT/2 + 20, 40, WHITE);
-        }
     }
 }
