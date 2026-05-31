@@ -31,7 +31,11 @@ O projeto possui um `Makefile` cross-platform que funciona em Windows e Linux.
     make run
     ```
 
-### Observações
+3. Jogo:
+
+https://github.com/user-attachments/assets/1aea6543-84ad-410f-8716-e1abee99418a
+
+
 
 *  As texturas dos doces devem estar na pasta `assets/` na raiz do projeto.
 *  O `Makefile` usa bibliotecas diferentes para Windows e Linux:
