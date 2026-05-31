@@ -1,44 +1,79 @@
-# Candy Crush C
+﻿# Jogo Pif (Candy Crush C)
 
-Este é um jogo em C inspirado na mecânica básica do Candy Crush. O projeto utiliza uma **lista encadeada** dinâmica para gerenciar a fila de doces de entrada e uma **matriz dinâmica** para o tabuleiro.
+Este projeto é um jogo em C inspirado em mecânicas de combinação de peças semelhantes ao Candy Crush. Ele usa **Raylib** para renderização e estrutura o jogo com matrizes dinâmicas e listas encadeadas.
+
+## Recursos
+
+* Tabuleiro em grade com quedas automáticas e resolução de cascatas.
+* Fila de doces de entrada implementada com **lista encadeada**.
+* Ranking de pontuações salvo em `scoreboard.txt`.
+* Animações de troca e movimento de doces.
+* Texturas de doces em `assets/` com fallback colorido quando necessário.
 
 ## Estrutura do Projeto
 
-O código está dividido nos seguintes arquivos:
-*   `src/main.c`: Ponto de entrada do programa, responsável pelo ciclo principal e inicialização.
-*   `src/lista.c`: Implementação das funções da fila de doces.
-*   `src/matriz.c`: Implementação das funções da matriz do tabuleiro.
-*   `src/raylib_utils.c`: Carregamento e gerenciamento das texturas dos doces.
-*   `src/render.c`: Desenho da grade e dos doces na tela.
-*   `include/lista.h`: Definição das estruturas `Doce` e `Node`, e protótipos da fila.
-*   `include/matriz.h`: Protótipos das funções da matriz.
-*   `include/raylib_utils.h`: Protótipos do módulo de Raylib e declaração das texturas.
-*   `include/render.h`: Protótipos das funções de renderização.
-*   `include/game_constants.h`: Constantes de cores e layout do jogo.
-*   `assets/`: Imagens dos doces usadas pelo jogo.
+* `src/main.c` - inicialização do jogo, loop principal e lógica de entradas.
+* `src/lista.c` - gerenciamento da fila de doces.
+* `src/matriz.c` - criação e manipulação do tabuleiro.
+* `src/raylib_utils.c` - carregamento de texturas e placeholders.
+* `src/render.c` - desenho do tabuleiro, interface e textos.
+* `src/score_manager.c` - leitura e gravação de ranking.
+* `include/game_constants.h` - constantes de configuração do jogo.
+* `include/lista.h` - protótipos e definições da fila encadeada.
+* `include/matriz.h` - protótipos de funções de matriz.
+* `include/raylib_utils.h` - protótipos de utilitários do Raylib.
+* `include/render.h` - protótipos de renderização.
+* `include/score_manager.h` - protótipos do gerenciador de pontuações.
+* `assets/` - imagens das peças do jogo.
+* `scoreboard.txt` - arquivo de ranking de pontuações.
 
-## Como Compilar e Executar
+## Requisitos
 
-O projeto possui um `Makefile` cross-platform que funciona em Windows e Linux.
+* `gcc` ou compilador compatível com C.
+* Biblioteca `raylib` instalada e acessível no sistema.
+* Diretório `assets/` com imagens de doces para o modo gráfico.
 
-1.  **Compilar:**
-    ```bash
-    make
-    ```
+## Compilar e Executar
 
-2.  **Executar:**
-    ```bash
-    make run
-    ```
+1. Compile o projeto:
 
-3. Jogo:
+```bash
+make
+```
 
-https://github.com/user-attachments/assets/1aea6543-84ad-410f-8716-e1abee99418a
+2. Execute o jogo:
 
+```bash
+make run
+```
 
+3. Limpe os arquivos gerados:
 
-*  As texturas dos doces devem estar na pasta `assets/` na raiz do projeto.
-*  O `Makefile` usa bibliotecas diferentes para Windows e Linux:
-   * Windows: `-lopengl32 -lgdi32 -lwinmm -lcomdlg32 -luser32`
-   * Linux: `-lraylib -lm -lpthread -ldl -lrt -lX11`
-*  O projeto depende da biblioteca `raylib`; certifique-se de que ela esteja instalada e acessível ao compilador.
+```bash
+make clean
+```
+
+## Vídeo do Jogo
+
+* Veja o gameplay em vídeo para entender a mecânica e a interface.
+* Link do vídeo:
+  https://github.com/user-attachments/assets/1aea6543-84ad-410f-8716-e1abee99418a
+
+## Detalhes Adicionais
+
+* O executável gerado é `candy_crush` ou `candy_crush.exe` no Windows.
+* O `Makefile` ajusta automaticamente os flags de link para Windows e Linux.
+* Caso as texturas não sejam encontradas, o jogo tenta usar placeholders coloridos para continuar funcionando.
+
+## Controles
+
+* Mouse para selecionar e trocar doces.
+* `Enter` para confirmar o nome do jogador na tela inicial.
+* `Backspace` para apagar caracteres no nome.
+* Feche a janela do jogo para sair.
+
+## Ranking
+
+* O ranking é carregado e salvo em `scoreboard.txt`.
+* O jogo suporta até `10` entradas no ranking.
+* O arquivo é atualizado sempre que o jogador termina o jogo com uma pontuação válida.
