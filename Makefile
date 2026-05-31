@@ -17,7 +17,7 @@ else
     RUN_CMD = ./$(TARGET)
 endif
 
-SRCS = src/main.c src/lista.c src/matriz.c src/raylib_utils.c src/render.c
+SRCS = src/main.c src/lista.c src/matriz.c src/raylib_utils.c src/render.c src/score_manager.c
 OBJS = $(SRCS:.c=.o)
 TARGET = candy_crush$(EXEEXT)
 

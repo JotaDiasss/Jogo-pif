@@ -3,4 +3,6 @@ main.o
 matriz.o
 raylib_utils.o
 render.o
+score_manager.o
+
 candy_crush.exe
