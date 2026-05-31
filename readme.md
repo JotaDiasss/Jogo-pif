@@ -55,9 +55,11 @@ make clean
 
 ## Vídeo do Jogo
 
-* Veja o gameplay em vídeo para entender a mecânica e a interface.
-* Link do vídeo:
-  https://github.com/user-attachments/assets/1aea6543-84ad-410f-8716-e1abee99418a
+* Veja o gameplay em vídeo para entender a mecânica e a interface:
+
+https://github.com/user-attachments/assets/1aea6543-84ad-410f-8716-e1abee99418a
+
+
 
 ## Detalhes Adicionais
 
